@@ -1,0 +1,46 @@
+<html lang="en">
+    <head>
+    <script src="http://code.jquery.com/jquery-1.11.0.min.js"></script>
+    <script type="application/javascript">
+        function calculate() {
+            alpha_chars = 62;
+            ascii_chars = 95;
+
+            input_pwlength = $("input[name='input_pw_length'").val();
+
+            if ($("input[name='input_radio']:checked").val() == "alpha") {
+                input_keys = Math.pow(alpha_chars, parseInt(input_pwlength));
+                calc_seconds = parseFloat(input_keys) / 1000000000000;
+                calc_minutes = Math.floor(calc_seconds / 60);
+                calc_hours = Math.floor(calc_minutes / 60);
+                show_results(calc_seconds, calc_minutes, calc_hours);
+            }
+
+            if ($("input[name='input_radio']:checked").val() == "ascii") {
+                input_keys = Math.pow(ascii_chars, parseInt(input_pwlength));
+                calc_seconds = parseFloat(input_keys) / 1000000000000;
+                calc_minutes = Math.floor(calc_seconds / 60);
+                calc_hours = Math.floor(calc_minutes / 60);
+                show_results(calc_seconds, calc_minutes, calc_hours);
+            }
+
+            function show_results(calc_seconds, calc_minutes) {
+                $("#result").text("It would took " + calc_seconds + " seconds or " + calc_minutes + " minutes or " + calc_hours + " hours.");
+            }
+        }
+    </script>
+    </head>
+    <body style="font-family:monospace">
+        <div style="max-width:600px;margin:0 auto;">
+            <h1>IS YOUR PASSWORD NSA PROOF?</h1>
+            <form>
+                <input type="number" name="input_pw_length" value="7" style="width:50px" min="3" max="9999"/> Password Length<br/>
+                <input type="radio" name="input_radio" value="alpha" checked="checked"/> Alphanumeric (a-z, A-Z, 0–9) (62 chars)<br/>
+                <input type="radio" name="input_radio" value="ascii"/> full ASCII (abcABC!123) (95 chars)<br/><br/>
+                <input type="button" name="submit" value="calculate" onClick="calculate()" style="width:100%;padding:10px;background:#9accff;border:none;"/>
+
+                <p><div id="result"></div><br/>The NSA can crack passwords with 1,000,000,000,000 keys / second.</p>
+            </form>
+        </div>
+    </body>
+</html>
