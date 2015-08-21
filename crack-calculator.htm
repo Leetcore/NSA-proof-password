@@ -1,6 +1,6 @@
 <html lang="en">
     <head>
-    <script src="http://code.jquery.com/jquery-1.11.0.min.js"></script>
+    <script src="//code.jquery.com/jquery-1.11.0.min.js"></script>
     <script type="application/javascript">
         function calculate() {
             alpha_chars = 62;
@@ -9,22 +9,24 @@
             input_pwlength = $("input[name='input_pw_length'").val();
 
             if ($("input[name='input_radio']:checked").val() == "alpha") {
-                input_keys = Math.pow(alpha_chars, parseInt(input_pwlength));
-                calc_seconds = parseFloat(input_keys) / 1000000000000;
-                calc_minutes = Math.floor(calc_seconds / 60);
-                calc_hours = Math.floor(calc_minutes / 60);
+                var input_keys = Math.pow(alpha_chars, parseInt(input_pwlength));
+                var calc_seconds = Math.round(parseFloat(input_keys) / 1000000000000);
+                var calc_seconds = calc_seconds.toFixed(2);
+                var calc_minutes = Math.round(calc_seconds / 60);
+                var calc_hours = Math.round(calc_minutes / 60);
                 show_results(calc_seconds, calc_minutes, calc_hours);
             }
 
             if ($("input[name='input_radio']:checked").val() == "ascii") {
-                input_keys = Math.pow(ascii_chars, parseInt(input_pwlength));
-                calc_seconds = parseFloat(input_keys) / 1000000000000;
-                calc_minutes = Math.floor(calc_seconds / 60);
-                calc_hours = Math.floor(calc_minutes / 60);
+                var input_keys = Math.pow(ascii_chars, parseInt(input_pwlength));
+                var calc_seconds = Math.round(parseFloat(input_keys) / 1000000000000);
+                var calc_seconds = calc_seconds.toFixed(2);
+                var calc_minutes = Math.round(calc_seconds / 60);
+                var calc_hours = Math.round(calc_minutes / 60);
                 show_results(calc_seconds, calc_minutes, calc_hours);
             }
 
-            function show_results(calc_seconds, calc_minutes) {
+            function show_results(calc_seconds, calc_minutes, calc_hours) {
                 $("#result").text("It would take " + calc_seconds + " seconds or " + calc_minutes + " minutes or " + calc_hours + " hours.");
             }
         }
