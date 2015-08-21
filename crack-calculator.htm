@@ -11,16 +11,16 @@
             if ($("input[name='input_radio']:checked").val() == "alpha") {
                 input_keys = Math.pow(alpha_chars, parseInt(input_pwlength));
                 calc_seconds = parseFloat(input_keys) / 1000000000000;
-                calc_minutes = Math.floor(calc_seconds / 60);
-                calc_hours = Math.floor(calc_minutes / 60);
+                calc_minutes = Math.round(calc_seconds / 60);
+                calc_hours = Math.round(calc_minutes / 60);
                 show_results(calc_seconds, calc_minutes, calc_hours);
             }
 
             if ($("input[name='input_radio']:checked").val() == "ascii") {
                 input_keys = Math.pow(ascii_chars, parseInt(input_pwlength));
                 calc_seconds = parseFloat(input_keys) / 1000000000000;
-                calc_minutes = Math.floor(calc_seconds / 60);
-                calc_hours = Math.floor(calc_minutes / 60);
+                calc_minutes = Math.round(calc_seconds / 60);
+                calc_hours = Math.round(calc_minutes / 60);
                 show_results(calc_seconds, calc_minutes, calc_hours);
             }
 
