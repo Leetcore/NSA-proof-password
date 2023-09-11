@@ -1,5 +1,6 @@
 <html lang="en">
     <header>
+        <title>Calc password strenghs</title>
         <meta charset="utf-8" />
     </header>
     <script type="application/javascript">
@@ -9,28 +10,35 @@
 
             input_pwlength = document.querySelector("input[name='input_pw_length'").value;
 
-            if (document.querySelector("input[name='input_radio']:checked").value == "alpha") {
-                var input_keys = Math.pow(alpha_chars, parseInt(input_pwlength));
-                var calc_seconds = Math.round(parseFloat(input_keys) / 1000000000000);
-                var calc_seconds = calc_seconds.toFixed(2);
-                var calc_minutes = Math.round(calc_seconds / 60);
-                var calc_hours = Math.round(calc_minutes / 60);
-                var calc_days = Math.round(calc_hours / 24);
-                show_results(calc_seconds, calc_minutes, calc_hours, calc_days);
-            }
+            var input_keys = Math.pow(alpha_chars, parseInt(input_pwlength));
 
             if (document.querySelector("input[name='input_radio']:checked").value == "ascii") {
-                var input_keys = Math.pow(ascii_chars, parseInt(input_pwlength));
-                var calc_seconds = Math.round(parseFloat(input_keys) / 1000000000000);
-                var calc_seconds = calc_seconds.toFixed(2);
-                var calc_minutes = Math.round(calc_seconds / 60);
-                var calc_hours = Math.round(calc_minutes / 60);
-                var calc_days = Math.round(calc_hours / 24);
-                show_results(calc_seconds, calc_minutes, calc_hours, calc_days);
+                console.log("Use ascii_chars")
+                input_keys = Math.pow(ascii_chars, parseInt(input_pwlength));
+            } else {
+                console.log("Use alpha_chars")
             }
 
-            function show_results(calc_seconds, calc_minutes, calc_hours) {
-                document.querySelector("#result").textContent = "It would take " + calc_seconds + " seconds or " + calc_minutes + " minutes or " + calc_hours + " hours or " + calc_days + " days";
+            var calc_seconds = Math.round(parseFloat(input_keys) / 1000000000000);
+            var calc_seconds = calc_seconds.toFixed(2);
+            var calc_minutes = Math.round(calc_seconds / 60);
+            var calc_hours = Math.round(calc_minutes / 60);
+            var calc_days = Math.round(calc_hours / 24);
+            show_results("nsa", calc_seconds, calc_minutes, calc_hours, calc_days);
+
+            var calc_seconds = Math.round(parseFloat(input_keys) / 40000000);
+            var calc_seconds = calc_seconds.toFixed(2);
+            var calc_minutes = Math.round(calc_seconds / 60);
+            var calc_hours = Math.round(calc_minutes / 60);
+            var calc_days = Math.round(calc_hours / 24);
+            show_results("consumer", calc_seconds, calc_minutes, calc_hours, calc_days);
+
+            function show_results(type, calc_seconds, calc_minutes, calc_hours) {
+                var result = document.querySelector("#result");
+                if (type == "consumer") {
+                    result = document.querySelector("#result_consumer");    
+                }
+                result.textContent = "It would take " + calc_minutes + " minutes or " + calc_hours + " hours or " + calc_days + " days";
             }
         }
     </script>
@@ -44,7 +52,15 @@
                 <input type="radio" name="input_radio" value="ascii"/> full ASCII (abcABC!123) (95 chars)<br/><br/>
                 <input type="button" name="submit" value="calculate" onClick="calculate()" style="width:100%;padding:10px;background:#9accff;border:none;"/>
 
-                <p><div id="result"></div><br/>The NSA can crack passwords with 1,000,000,000,000 keys / second.</p>
+                <p>
+                    <div id="result"></div>
+                    The NSA can crack passwords with 1,000,000,000,000 keys / second.
+                </p>
+
+                <p>
+                    <div id="result_consumer"></div>
+                    Consumer graphics cards can crack passwords with 40,000,000 keys / second.
+                </p>
             </form>
         </div>
     </body>
