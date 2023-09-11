@@ -1,8 +1,9 @@
+<!DOCTYPE html>
 <html lang="en">
-    <header>
-        <title>Calc password strenghs</title>
-        <meta charset="utf-8" />
-    </header>
+
+<head>
+    <title>Calc password strenghs</title>
+    <meta charset="utf-8" />
     <script type="application/javascript">
         function calculate() {
             alpha_chars = 62;
@@ -36,32 +37,39 @@
             function show_results(type, calc_seconds, calc_minutes, calc_hours) {
                 var result = document.querySelector("#result");
                 if (type == "consumer") {
-                    result = document.querySelector("#result_consumer");    
+                    result = document.querySelector("#result_consumer");
                 }
                 result.textContent = "It would take " + calc_minutes + " minutes or " + calc_hours + " hours or " + calc_days + " days";
             }
         }
     </script>
-    </head>
-    <body style="font-family:monospace">
-        <div style="max-width:600px;margin:0 auto;">
-            <h1>IS YOUR PASSWORD NSA PROOF?</h1>
-            <form>
-                <input type="number" name="input_pw_length" value="7" style="width:50px" min="3" max="9999"/> Password Length<br/>
-                <input type="radio" name="input_radio" value="alpha" checked="checked"/> Alphanumeric (a-z, A-Z, 0-9) (62 chars)<br/>
-                <input type="radio" name="input_radio" value="ascii"/> full ASCII (abcABC!123) (95 chars)<br/><br/>
-                <input type="button" name="submit" value="calculate" onClick="calculate()" style="width:100%;padding:10px;background:#9accff;border:none;"/>
+</head>
 
-                <p>
-                    <div id="result"></div>
-                    The NSA can crack passwords with 1,000,000,000,000 keys / second.
-                </p>
+<body style="font-family:monospace">
+    <div style="max-width:600px;margin:0 auto;">
+        <h1>IS YOUR PASSWORD NSA PROOF?</h1>
+        <form>
+            <input type="number" name="input_pw_length" value="7"
+                style="width:50px" min="3" max="9999" /> Password Length<br />
+            <input type="radio" name="input_radio" value="alpha"
+                checked="checked" /> Alphanumeric (a-z, A-Z, 0-9) (62
+            chars)<br />
+            <input type="radio" name="input_radio" value="ascii" /> full ASCII
+            (abcABC!123) (95 chars)<br /><br />
+            <input type="button" name="submit" value="calculate"
+                onClick="calculate()"
+                style="width:100%;padding:10px;background:#9accff;border:none;" />
 
-                <p>
-                    <div id="result_consumer"></div>
-                    Consumer graphics cards can crack passwords with 40,000,000 keys / second.
-                </p>
-            </form>
-        </div>
-    </body>
+            <div id="result"></div>
+            The NSA can crack passwords with 1,000,000,000,000 keys / second.
+            <br/>
+            <br/>
+            <div id="result_consumer"></div>
+            Consumer graphics cards can crack passwords with 40,000,000 keys /
+            second.
+
+        </form>
+    </div>
+</body>
+
 </html>
